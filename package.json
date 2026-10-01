@@ -1,0 +1,23 @@
+{
+  "name": "srk-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website for Sustainable Resources of Kenya",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sustainable-resources-kenya/srk-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sustainable-resources-kenya/srk-website/issues"
+  },
+  "homepage": "https://github.com/sustainable-resources-kenya/srk-website#readme",
+  "dependencies": {
+    "astro": "^7.3.5"
+  }
+}
