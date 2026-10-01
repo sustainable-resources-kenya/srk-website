@@ -1,0 +1,14 @@
+# Dependencies (recreate with `npm install`)
+node_modules/
+
+# Build output
+dist/
+
+# Astro's generated cache and types
+.astro/
+
+# macOS folder metadata
+.DS_Store
+
+# Local secrets
+.env
