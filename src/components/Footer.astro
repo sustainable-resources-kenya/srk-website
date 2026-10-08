@@ -1,0 +1,237 @@
+---
+// Site footer (id="contact"): logo, tagline, quick links, contact details.
+// Contact details SRK hasn't given us yet show as dashed placeholder boxes.
+// No profile PDF link: SRK hasn't approved publishing it.
+// All wording comes from src/content/home.json.
+import home from "../content/home.json";
+
+const { site, hero, nav, footer, contact } = home;
+---
+
+<footer id="contact" class="site-footer">
+  <div class="inner">
+    <div class="columns">
+      <div class="brand-col">
+        <div class="brand">
+          <span class="logo-tile">
+            <img src="/logo.webp" width="240" height="178" alt={site.logoAlt} loading="lazy" />
+          </span>
+          <p class="brand-name">{site.name}</p>
+        </div>
+        <p class="tagline">{footer.tagline}</p>
+        <p class="subline">{hero.heading}</p>
+      </div>
+
+      <nav class="links-col" aria-label="Footer">
+        <h2 class="label">{footer.quickLinksLabel}</h2>
+        <ul class="footer-links">
+          {nav.links.map((link) => (
+            <li><a class="footer-link" href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="contact-col">
+        <h2 class="label">{footer.contactLabel}</h2>
+        <p class="head-office">{footer.headOffice}</p>
+        <ul class="placeholders">
+          {contact.map((item) => (
+            <li class="placeholder">[ {item.label}: {item.value} ]</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <p class="copyright">{footer.copyright}</p>
+  </div>
+</footer>
+
+<style>
+  /* ---------- Mobile (default) ---------- */
+
+  .site-footer {
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    max-width: var(--size-page-max);
+    margin-inline: auto;
+    padding: var(--space-7) var(--space-4) var(--space-5);
+  }
+  .columns {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  p,
+  h2 {
+    margin: 0;
+  }
+
+  /* Logo, name, tagline */
+  .brand-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .logo-tile {
+    display: flex;
+    padding: var(--space-1);
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+  }
+  .logo-tile img {
+    display: block;
+    height: var(--size-logo-footer);
+    width: auto;
+  }
+  .brand-name {
+    font-size: var(--text-body-size);
+    line-height: var(--text-h3-line);
+    font-weight: var(--font-weight-bold);
+  }
+  .tagline {
+    font-size: var(--text-tagline-size);
+    line-height: var(--text-tagline-line);
+    font-weight: var(--font-weight-bold);
+  }
+  .subline {
+    font-size: var(--text-body-size);
+    line-height: var(--text-small-line);
+  }
+
+  /* Section labels: "Quick links", "Contact" */
+  .label {
+    padding-bottom: var(--space-1);
+    font-size: var(--text-small-size);
+    line-height: var(--text-small-line);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+  }
+
+  /* Quick links: two columns on mobile */
+  .links-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .footer-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--size-tap);
+    min-width: var(--size-tap);
+    color: var(--color-white);
+    font-size: var(--text-ui-size);
+    text-decoration: none;
+    border-radius: var(--radius-xs);
+  }
+  .footer-link:hover {
+    color: var(--color-white);
+    text-decoration: underline;
+    text-decoration-thickness: var(--border-thick);
+  }
+  .footer-link:active {
+    background: var(--color-sun);
+    color: var(--color-ink);
+  }
+  .footer-link:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-sun);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  /* Contact */
+  .contact-col .label {
+    padding-bottom: 0;
+  }
+  .contact-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .head-office {
+    font-size: var(--text-ui-size);
+    line-height: var(--text-small-line);
+  }
+  .placeholders {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .placeholder {
+    display: flex;
+    align-items: center;
+    min-height: var(--size-tap);
+    padding: 0 var(--space-3);
+    border: var(--border-thick) dashed var(--color-white);
+    border-radius: var(--radius-md);
+    font-size: var(--text-small-size);
+  }
+
+  .copyright {
+    padding-top: var(--space-4);
+    border-top: var(--border-thin) solid var(--color-muted);
+    font-size: var(--text-small-size);
+    line-height: var(--text-small-line);
+  }
+
+  /* ---------- Desktop (768px and up) ---------- */
+  /* 768px is written out because CSS can't use a variable in a media query. */
+
+  @media (min-width: 768px) {
+    .inner {
+      gap: var(--space-7);
+      padding: var(--space-8) var(--space-6) var(--space-6);
+    }
+    .columns {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 4fr);
+      gap: var(--space-7);
+    }
+    .brand {
+      gap: var(--space-4);
+    }
+    .brand-name {
+      max-width: var(--size-name-footer);
+    }
+    .tagline {
+      max-width: var(--size-tagline-max);
+    }
+    .links-col {
+      gap: 0;
+    }
+    .links-col .label {
+      padding-bottom: var(--space-2);
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .footer-link {
+      padding: 0 var(--space-1);
+    }
+    .copyright {
+      padding-top: var(--space-5);
+    }
+  }
+</style>

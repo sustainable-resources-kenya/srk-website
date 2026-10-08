@@ -1,0 +1,316 @@
+---
+// Site header: logo + name, nav links, "Get involved" button.
+// Mobile: a Menu button opens the nav as a panel that pushes the page down.
+// Desktop (768px+): the nav sits inline and the Menu button is hidden.
+// All wording comes from src/content/home.json.
+import home from "../content/home.json";
+
+const { site, nav } = home;
+---
+
+<header id="top" class="site-header">
+  <div class="inner">
+    <a class="brand" href="#top">
+      <img src="/logo.webp" width="240" height="178" alt={site.logoAlt} />
+      <span class="brand-name">{site.name}</span>
+    </a>
+
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu">
+      <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="close-icon" aria-hidden="true">×</span>
+      <span class="menu-label">{nav.menuLabel}</span>
+      <span class="close-label">{nav.closeLabel}</span>
+    </button>
+
+    <nav id="site-menu" aria-label="Main" hidden>
+      <ul class="nav-list">
+        {nav.links.map((link) => (
+          <li><a class="nav-link" href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+      <a class="button-primary" href={nav.cta.href}>{nav.cta.label}</a>
+    </nav>
+  </div>
+
+  <div class="brand-band" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+</header>
+
+<script is:inline>
+  // Mobile menu: open/close with the button, close when a link is tapped
+  // or Escape is pressed. On desktop the CSS shows the nav without this.
+  (() => {
+    const button = document.querySelector(".menu-button");
+    const menu = document.getElementById("site-menu");
+    if (!button || !menu) return;
+
+    function setOpen(open) {
+      button.setAttribute("aria-expanded", String(open));
+      menu.hidden = !open;
+    }
+
+    button.addEventListener("click", () => setOpen(menu.hidden));
+
+    menu.addEventListener("click", (event) => {
+      if (event.target.closest("a")) setOpen(false);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && button.getAttribute("aria-expanded") === "true") {
+        setOpen(false);
+        button.focus();
+      }
+    });
+
+    // Going from phone width to desktop width resets the menu to closed.
+    matchMedia("(min-width: 768px)").addEventListener("change", (event) => {
+      if (event.matches) setOpen(false);
+    });
+  })();
+</script>
+
+<style>
+  /* ---------- Mobile (default) ---------- */
+
+  .inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: var(--size-header-height) auto;
+    align-items: center;
+    column-gap: var(--space-2);
+    padding-inline: var(--space-4);
+    border-bottom: var(--border-thin) solid var(--color-line);
+  }
+
+  /* Logo + site name */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    justify-self: start;
+    min-height: var(--size-tap);
+    color: var(--color-ink);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+  .brand:hover {
+    color: var(--color-ink);
+  }
+  .brand:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-ink);
+    outline-offset: var(--focus-ring-offset);
+  }
+  .brand img {
+    display: block;
+    height: var(--size-logo-header);
+    width: auto;
+  }
+  .brand-name {
+    max-width: var(--size-name-header);
+    font-size: var(--text-small-size);
+    line-height: var(--text-name-line);
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* Menu button */
+  .menu-button {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--size-button);
+    min-width: var(--size-button);
+    padding: 0 var(--space-3);
+    background: var(--color-white);
+    color: var(--color-ink);
+    border: var(--border-thick) solid var(--color-ink);
+    border-radius: var(--radius-md);
+    font: inherit;
+    font-size: var(--text-ui-size);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+  }
+  .menu-button:hover {
+    background: var(--color-tint);
+  }
+  /* Pressed, and while the menu is open: White on Ink, reads "Close" */
+  .menu-button:active,
+  .menu-button[aria-expanded="true"] {
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+  .menu-button:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-ink);
+    outline-offset: var(--focus-ring-offset);
+  }
+  .menu-icon {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .menu-icon span {
+    width: var(--size-menu-icon);
+    height: var(--border-thick);
+    background: currentColor;
+  }
+  .close-icon {
+    font-size: var(--text-h3-size);
+    line-height: 1;
+  }
+  .close-icon,
+  .close-label,
+  .menu-button[aria-expanded="true"] .menu-icon,
+  .menu-button[aria-expanded="true"] .menu-label {
+    display: none;
+  }
+  .menu-button[aria-expanded="true"] .close-icon,
+  .menu-button[aria-expanded="true"] .close-label {
+    display: inline;
+  }
+
+  /* Open mobile menu: a panel under the bar that pushes content down */
+  #site-menu {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    margin-inline: calc(-1 * var(--space-4));
+    padding: var(--space-2) var(--space-4) var(--space-5);
+    border-top: var(--border-thin) solid var(--color-line);
+  }
+  #site-menu[hidden] {
+    display: none;
+  }
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .nav-link {
+    display: flex;
+    align-items: center;
+    min-height: var(--size-menu-row);
+    padding: 0 var(--space-2);
+    border-bottom: var(--border-thin) solid var(--color-line);
+    color: var(--color-ink);
+    font-size: var(--text-large-size);
+    text-decoration: none;
+  }
+  .nav-link:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-thickness: var(--border-thick);
+  }
+  .nav-link:active {
+    background: var(--color-tint);
+    color: var(--color-ink);
+  }
+  .nav-link:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-ink);
+    outline-offset: var(--focus-ring-offset-inset);
+  }
+
+  /* "Get involved": primary button */
+  .button-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--size-button);
+    margin-top: var(--space-5);
+    padding: 0 var(--space-button-x);
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: var(--radius-md);
+    font-size: var(--text-ui-size);
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+  }
+  .button-primary:hover {
+    background: var(--color-primary-hover);
+    color: var(--color-white);
+  }
+  .button-primary:active {
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+  .button-primary:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-ink);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  /* The brand band only shows on desktop */
+  .brand-band {
+    display: none;
+  }
+
+  /* ---------- Desktop (768px and up) ---------- */
+  /* 768px is written out because CSS can't use a variable in a media query. */
+
+  @media (min-width: 768px) {
+    .inner {
+      grid-template-columns: auto 1fr;
+      grid-template-rows: var(--size-header-height);
+      column-gap: var(--space-5);
+      max-width: var(--size-page-max);
+      margin-inline: auto;
+      padding-inline: var(--space-6);
+      border-bottom: 0;
+    }
+    .brand {
+      gap: var(--space-3);
+    }
+    .brand-name {
+      font-size: var(--text-body-size);
+    }
+
+    .menu-button {
+      display: none;
+    }
+
+    /* The nav is always visible on desktop, even if the script never runs. */
+    #site-menu,
+    #site-menu[hidden] {
+      grid-column: auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-self: end;
+      gap: var(--space-2);
+      margin: 0;
+      padding: 0;
+      border-top: 0;
+    }
+    .nav-list {
+      flex-direction: row;
+      gap: var(--space-2);
+    }
+    .nav-link {
+      min-height: var(--size-tap);
+      padding: 0 var(--space-3);
+      border-bottom: 0;
+      border-radius: var(--radius-sm);
+      font-size: var(--text-ui-size);
+    }
+    .nav-link:hover {
+      text-underline-offset: var(--underline-offset-nav);
+    }
+    .nav-link:focus-visible {
+      outline-offset: var(--focus-ring-offset);
+    }
+    .button-primary {
+      margin-top: 0;
+      margin-left: var(--space-4);
+    }
+
+    .brand-band {
+      display: grid;
+      grid-template-columns: 3fr 1fr 1fr 1fr;
+      height: var(--border-band);
+    }
+    .brand-band span:nth-child(1) { background: var(--color-primary); }
+    .brand-band span:nth-child(2) { background: var(--color-leaf); }
+    .brand-band span:nth-child(3) { background: var(--color-river); }
+    .brand-band span:nth-child(4) { background: var(--color-sun); }
+  }
+</style>
