@@ -82,8 +82,10 @@
   --border-thin: 1px;           /* dividers, card borders */
   --border-thick: 2px;          /* button borders, hover underlines, menu bars */
   --border-band: 4px;           /* brand color band under the header */
+  --size-card-band: 12px;       /* colored band on top of each project card */
   --space-button-x: 20px;       /* left and right padding inside buttons */
   --underline-offset-nav: 6px;  /* desktop nav hover underline */
+  --underline-thick: 3px;       /* text link underline on hover and pressed */
 }
 
 @media (min-width: 768px) {
@@ -111,3 +113,6 @@ b,strong{font-weight:var(--font-weight-bold)}
 em,i,cite,blockquote{font-style:normal}
 a{color:var(--color-primary)}
 a:hover{color:var(--color-primary-hover)}
+
+/* Hidden on screen, still read by screen readers */
+.visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}

@@ -86,8 +86,10 @@ Cole's exact values. Where two sizes are given, the second switches on at 768px.
 | `--border-thin` | 1px | 1px | Dividers, card borders |
 | `--border-thick` | 2px | 2px | Button borders, hover underlines, menu bars |
 | `--border-band` | 4px | 4px | Brand color band under the desktop header |
+| `--size-card-band` | 12px | 12px | Colored accent band on top of each project card |
 | `--space-button-x` | 20px | 20px | Left and right padding inside buttons |
 | `--underline-offset-nav` | 6px | 6px | Desktop nav hover underline |
+| `--underline-thick` | 3px | 3px | Text link underline on hover and pressed |
 
 `--size-page-max` is **our choice, not Cole's: the widest layout Cole drew.**
 Cole's desktop frames are 1200px wide, but the file never sets a maximum

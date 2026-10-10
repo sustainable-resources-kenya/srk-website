@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Sustainable Resources of Kenya (SRK) | Bondo, Siaya County"
+  },
+  "skipLink": "Skip to content",
   "site": {
     "name": "Sustainable Resources of Kenya",
     "logoAlt": ""
@@ -21,6 +25,8 @@
     "quote": "Strong communities are the foundation of a sustainable future."
   },
   "work": {
+    "heading": "Our Work",
+    "linkLabel": "Learn more",
     "cards": [
       {
         "tag": "Livelihoods",
