@@ -1,8 +1,120 @@
 ---
+// The v0.1 one-page home page.
+// All wording comes from src/content/home.json.
 import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import TextSection from "../components/TextSection.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import Footer from "../components/Footer.astro";
+import home from "../content/home.json";
+
+const { skipLink, about, work } = home;
+
+// Card accent colors, in the same order as the cards in home.json:
+// Livelihoods, Environment, Water & sanitation.
+const accents = ["leaf", "primary", "river"] as const;
 ---
 
 <Base>
-  <h1>Sustainable Resources of Kenya</h1>
-  <p>Community development in Bondo, Siaya County. Website launching October 2026.</p>
+  <a class="skip-link" href="#main">{skipLink}</a>
+  <Header />
+  <main id="main">
+    <Hero />
+
+    <TextSection
+      id="about"
+      label={about.label}
+      heading={about.heading}
+      paragraphs={about.paragraphs}
+      quoteIntro={about.quoteIntro}
+      quote={about.quote}
+    />
+
+    <section id="work" class="work" aria-labelledby="work-heading">
+      <div class="inner">
+        <h2 id="work-heading">{work.heading}</h2>
+        <ul class="cards">
+          {work.cards.map((card, i) => (
+            <li>
+              <ProjectCard
+                tag={card.tag}
+                title={card.title}
+                description={card.description}
+                href="#contact"
+                linkLabel={work.linkLabel}
+                accent={accents[i]}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </main>
+  <Footer />
 </Base>
+
+<style>
+  /* Skip link: hidden until it gets keyboard focus, then shown top-left */
+  .skip-link {
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-2);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    min-height: var(--size-button);
+    padding: 0 var(--space-button-x);
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: var(--radius-md);
+    font-size: var(--text-ui-size);
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+    transform: translateY(-200%);
+  }
+  .skip-link:focus {
+    transform: none;
+    color: var(--color-white);
+    outline: var(--focus-ring-width) solid var(--color-ink);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  /* ---------- Our Work: mobile (default) ---------- */
+
+  .work {
+    background: var(--color-tint);
+  }
+  .inner {
+    max-width: var(--size-page-max);
+    margin-inline: auto;
+    padding: var(--space-7) var(--space-4);
+  }
+  h2 {
+    margin: 0;
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--font-weight-bold);
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* ---------- Our Work: desktop (768px and up) ---------- */
+  /* 768px is written out because CSS can't use a variable in a media query. */
+
+  @media (min-width: 768px) {
+    .inner {
+      padding: var(--space-8) var(--space-6);
+    }
+    .cards {
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: var(--space-6);
+    }
+  }
+</style>

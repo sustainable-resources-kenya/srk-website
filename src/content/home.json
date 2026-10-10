@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "title": "Sustainable Resources of Kenya (SRK) | Bondo, Siaya County"
+  },
+  "skipLink": "Skip to content",
+  "site": {
+    "name": "Sustainable Resources of Kenya",
+    "logoAlt": ""
+  },
+  "hero": {
+    "heading": "Empowering Communities, Sustaining Futures",
+    "mission": "To empower communities to build sustainable livelihoods, protect natural resources, and create resilient futures through skills, innovation, and partnerships.",
+    "primaryButton": "Explore our work",
+    "secondaryButton": "Partner with us"
+  },
+  "about": {
+    "label": "About SRK",
+    "heading": "About Sustainable Resources of Kenya",
+    "paragraphs": [
+      "Sustainable Resources of Kenya (SRK) is a Kenyan non-governmental organization committed to empowering communities to build sustainable livelihoods, protect natural resources, and become resilient agents of their own development.",
+      "SRK works with communities and strategic partners to develop practical solutions to social, economic, and environmental challenges affecting vulnerable and underserved populations across Kenya.",
+      "SRK believes that lasting development happens when communities are not simply recipients of solutions but are actively involved in identifying their challenges, developing solutions, managing resources, and shaping their own future."
+    ],
+    "quoteIntro": "Our work is built around a simple principle:",
+    "quote": "Strong communities are the foundation of a sustainable future."
+  },
+  "work": {
+    "heading": "Our Work",
+    "linkLabel": "Learn more",
+    "cards": [
+      {
+        "tag": "Livelihoods",
+        "title": "Sustainable Livelihoods & Food Security",
+        "description": "We seek to enable households and communities to strengthen their ability to generate sustainable incomes and improve food security."
+      },
+      {
+        "tag": "Environment",
+        "title": "Environment, Climate Action & Natural Resources",
+        "description": "Our goal is to help communities respond to environmental challenges while protecting the resources upon which their livelihoods depend."
+      },
+      {
+        "tag": "Water & sanitation",
+        "title": "Water, Sanitation & Community Infrastructure",
+        "description": "We seek practical and sustainable solutions that respond to the realities of communities and institutions."
+      }
+    ]
+  },
+  "nav": {
+    "links": [
+      { "label": "About", "href": "#about" },
+      { "label": "Our Work", "href": "#work" },
+      { "label": "Contact", "href": "#contact" }
+    ],
+    "cta": { "label": "Get involved", "href": "#contact" },
+    "menuLabel": "Menu",
+    "closeLabel": "Close"
+  },
+  "footer": {
+    "tagline": "Resilient Communities. Sustainable Futures.",
+    "quickLinksLabel": "Quick links",
+    "contactLabel": "Contact",
+    "headOffice": "Head office: Bondo, Siaya County, Kenya",
+    "copyright": "© Sustainable Resources of Kenya (SRK)"
+  },
+  "contact": [
+    { "label": "Email", "value": "TODO: SRK to provide" },
+    { "label": "Phone", "value": "TODO: SRK to provide" },
+    { "label": "Social links", "value": "TODO: SRK to provide" }
+  ]
+}

@@ -38,6 +38,13 @@ for emphasis.
 | Large body | `--text-large-size` / `--text-large-line` | 18px / 1.55 | 20px / 1.55 | 400 |
 | Body | `--text-body-size` / `--text-body-line` | 16px / 1.6 | 18px / 1.6 | 400 |
 | Small | `--text-small-size` / `--text-small-line` | 14px / 1.5 | 14px / 1.5 | 400 or 700 |
+| Tagline | `--text-tagline-size` / `--text-tagline-line` | 22px / 1.3 | 28px / 1.25 | 700 |
+| UI text | `--text-ui-size` | 16px | 16px | 400 or 700 |
+
+UI text is for buttons, nav links, footer links and contact lines: Cole keeps
+them at 16px on desktop while body text grows to 18px. The site name next to
+the logo uses `--text-name-line` (1.25). Uppercase labels ("Quick links") use
+`--label-tracking` (0.08em).
 
 Desktop sizes switch on at **768px**. Cole's file shows only 375px (mobile)
 and 1200px (desktop). The 768px breakpoint is our choice, not Cole's.
@@ -58,6 +65,35 @@ and 1200px (desktop). The 768px breakpoint is our choice, not Cole's.
 Corner radii: `--radius-xs` 2px (focused text links, footer links),
 `--radius-sm` 4px (menu items), `--radius-md` 6px (buttons),
 `--radius-lg` 8px (cards), `--radius-pill` 999px (tags).
+
+## Sizes
+
+Cole's exact values. Where two sizes are given, the second switches on at 768px.
+
+| Token | Mobile | Desktop | Used for |
+|---|---|---|---|
+| `--size-tap` | 44px | 44px | Smallest link or button |
+| `--size-button` | 48px | 48px | Button height, menu button |
+| `--size-menu-row` | 52px | — | Rows in the open mobile menu |
+| `--size-header-height` | 72px | 88px | Header bar |
+| `--size-logo-header` | 52px | 64px | Logo height in the header |
+| `--size-logo-footer` | 56px | 72px | Logo height in the footer |
+| `--size-name-header` | 130px | 180px | Max width of the site name in the header |
+| `--size-name-footer` | — | 200px | Max width of the site name in the footer |
+| `--size-tagline-max` | — | 420px | Max width of the footer tagline |
+| `--size-page-max` | 1200px | 1200px | Widest content area (our choice, not Cole's: see below) |
+| `--size-menu-icon` | 18px | — | Width of the three menu bars |
+| `--border-thin` | 1px | 1px | Dividers, card borders |
+| `--border-thick` | 2px | 2px | Button borders, hover underlines, menu bars |
+| `--border-band` | 4px | 4px | Brand color band under the desktop header |
+| `--size-card-band` | 12px | 12px | Colored accent band on top of each project card |
+| `--space-button-x` | 20px | 20px | Left and right padding inside buttons |
+| `--underline-offset-nav` | 6px | 6px | Desktop nav hover underline |
+| `--underline-thick` | 3px | 3px | Text link underline on hover and pressed |
+
+`--size-page-max` is **our choice, not Cole's: the widest layout Cole drew.**
+Cole's desktop frames are 1200px wide, but the file never sets a maximum
+content width.
 
 ## Interactive states
 

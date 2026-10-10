@@ -1,0 +1,116 @@
+---
+// Hero, layout C: heading, mission and two buttons on Leaf Tint.
+// No photo in v0.1 (photos come at v0.3).
+// Holds the page's only <h1>. All wording comes from src/content/home.json.
+import home from "../content/home.json";
+
+const { hero } = home;
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="inner">
+    <h1 id="hero-heading">{hero.heading}</h1>
+    <p class="mission">{hero.mission}</p>
+    <div class="buttons">
+      <a class="button button-primary" href="#work">{hero.primaryButton}</a>
+      <a class="button button-secondary" href="#contact">{hero.secondaryButton}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---------- Mobile (default) ---------- */
+
+  .hero {
+    background: var(--color-tint);
+  }
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    max-width: var(--size-page-max);
+    margin-inline: auto;
+    padding: var(--space-7) var(--space-4);
+  }
+  h1,
+  p {
+    margin: 0;
+  }
+  h1 {
+    font-size: var(--text-h1-size);
+    line-height: var(--text-h1-line);
+    font-weight: var(--font-weight-bold);
+  }
+  .mission {
+    font-size: var(--text-large-size);
+    line-height: var(--text-large-line);
+  }
+
+  /* Buttons: stacked on mobile */
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--size-button);
+    padding: 0 var(--space-button-x);
+    border: var(--border-thick) solid var(--color-primary);
+    border-radius: var(--radius-md);
+    font-size: var(--text-ui-size);
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+  }
+  .button:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-ink);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  /* Primary: White on Deep Green */
+  .button-primary {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+  .button-primary:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    color: var(--color-white);
+  }
+  .button-primary:active {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-white);
+  }
+
+  /* Secondary: Deep Green text and border, White fill */
+  .button-secondary {
+    background: var(--color-white);
+    color: var(--color-primary);
+  }
+  .button-secondary:hover {
+    background: var(--color-tint);
+    border-color: var(--color-primary-hover);
+    color: var(--color-primary-hover);
+  }
+  .button-secondary:active {
+    background: var(--color-line);
+    border-color: var(--color-primary-hover);
+    color: var(--color-primary-hover);
+  }
+
+  /* ---------- Desktop (768px and up) ---------- */
+  /* 768px is written out because CSS can't use a variable in a media query. */
+
+  @media (min-width: 768px) {
+    .inner {
+      padding: var(--space-8) var(--space-6);
+    }
+    .buttons {
+      flex-direction: row;
+      gap: var(--space-2);
+    }
+  }
+</style>

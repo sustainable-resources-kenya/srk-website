@@ -1,14 +1,16 @@
 ---
 import "../styles/tokens.css";
+import home from "../content/home.json";
 
 interface Props {
   title?: string;
   description?: string;
 }
 
+// Defaults: the site title and SRK's mission statement, from home.json.
 const {
-  title = "Sustainable Resources of Kenya",
-  description = "Sustainable Resources of Kenya: community development in Bondo, Siaya County.",
+  title = home.meta.title,
+  description = home.hero.mission,
 } = Astro.props;
 ---
 

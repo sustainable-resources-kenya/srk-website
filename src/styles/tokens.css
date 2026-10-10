@@ -39,6 +39,11 @@
   --text-body-line: 1.6;
   --text-small-size: 14px;
   --text-small-line: 1.5;
+  --text-tagline-size: 22px;       /* footer tagline */
+  --text-tagline-line: 1.3;
+  --text-ui-size: 16px;            /* buttons, nav links, footer links: stays 16px on desktop */
+  --text-name-line: 1.25;          /* site name next to the logo */
+  --label-tracking: 0.08em;        /* uppercase labels like "Quick links" */
 
   /* Spacing: 4px base */
   --space-1: 4px;
@@ -61,6 +66,26 @@
   --focus-ring-width: 3px;
   --focus-ring-offset: 3px;
   --focus-ring-offset-inset: -3px; /* open mobile menu rows */
+
+  /* Sizes (mobile values; some grow in the media query below) */
+  --size-tap: 44px;             /* smallest link or button */
+  --size-button: 48px;          /* button height */
+  --size-menu-row: 52px;        /* rows in the open mobile menu */
+  --size-header-height: 72px;
+  --size-logo-header: 52px;
+  --size-logo-footer: 56px;
+  --size-name-header: 130px;    /* max width of the site name in the header */
+  --size-name-footer: 200px;    /* max width of the site name in the footer (desktop) */
+  --size-tagline-max: 420px;    /* max width of the footer tagline (desktop) */
+  --size-page-max: 1200px;      /* widest content area. Our choice, not Cole's: the widest layout Cole drew */
+  --size-menu-icon: 18px;       /* width of the three menu bars */
+  --border-thin: 1px;           /* dividers, card borders */
+  --border-thick: 2px;          /* button borders, hover underlines, menu bars */
+  --border-band: 4px;           /* brand color band under the header */
+  --size-card-band: 12px;       /* colored band on top of each project card */
+  --space-button-x: 20px;       /* left and right padding inside buttons */
+  --underline-offset-nav: 6px;  /* desktop nav hover underline */
+  --underline-thick: 3px;       /* text link underline on hover and pressed */
 }
 
 @media (min-width: 768px) {
@@ -71,6 +96,13 @@
     --text-h3-size: 24px;
     --text-large-size: 20px;
     --text-body-size: 18px;
+    --text-tagline-size: 28px;
+    --text-tagline-line: 1.25;
+
+    --size-header-height: 88px;
+    --size-logo-header: 64px;
+    --size-logo-footer: 72px;
+    --size-name-header: 180px;
   }
 }
 
@@ -81,3 +113,6 @@ b,strong{font-weight:var(--font-weight-bold)}
 em,i,cite,blockquote{font-style:normal}
 a{color:var(--color-primary)}
 a:hover{color:var(--color-primary-hover)}
+
+/* Hidden on screen, still read by screen readers */
+.visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}

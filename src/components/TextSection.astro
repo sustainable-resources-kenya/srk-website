@@ -1,0 +1,95 @@
+---
+// A text section: small label, heading, paragraphs and an optional pull quote.
+// Used for About. The pull quote is Bold (the site has no italic).
+// Wording is passed in from src/content/home.json.
+
+interface Props {
+  id: string;
+  label: string;
+  heading: string;
+  paragraphs: string[];
+  quoteIntro?: string;
+  quote?: string;
+}
+
+const { id, label, heading, paragraphs, quoteIntro, quote } = Astro.props;
+const headingId = `${id}-heading`;
+---
+
+<section id={id} class="text-section" aria-labelledby={headingId}>
+  <div class="inner">
+    <p class="label">{label}</p>
+    <h2 id={headingId}>{heading}</h2>
+    <div class="body">
+      {paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      {quoteIntro && <p>{quoteIntro}</p>}
+      {quote && <p class="pull-quote">{quote}</p>}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---------- Mobile (default) ---------- */
+
+  .text-section {
+    background: var(--color-white);
+  }
+  .inner {
+    max-width: var(--size-page-max);
+    margin-inline: auto;
+    padding: var(--space-7) var(--space-4);
+  }
+  p,
+  h2 {
+    margin: 0;
+  }
+
+  /* Section label: "About SRK" */
+  .label {
+    color: var(--color-primary);
+    font-size: var(--text-small-size);
+    line-height: var(--text-small-line);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+  }
+  h2 {
+    margin-top: var(--space-2);
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+  }
+
+  /* Pull quote: Bold on Leaf Tint with a Sun Orange bar */
+  .pull-quote {
+    padding: var(--space-5);
+    background: var(--color-tint);
+    border-left: var(--border-band) solid var(--color-sun);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-large-size);
+    line-height: var(--text-large-line);
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* ---------- Desktop (768px and up) ---------- */
+  /* 768px is written out because CSS can't use a variable in a media query. */
+
+  @media (min-width: 768px) {
+    .inner {
+      padding: var(--space-8) var(--space-6);
+    }
+    .body {
+      gap: var(--space-5);
+      margin-top: var(--space-6);
+    }
+  }
+</style>
